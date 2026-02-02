@@ -12,7 +12,7 @@ import { errorHandler } from './middleware/errorHandler.js';
 dotenv.config();
 
 const startServer = async () => {
-  await connectMongoDB(); 
+  await connectMongoDB();
 
   const app = express();
 
@@ -25,7 +25,7 @@ const startServer = async () => {
   app.use(notFoundHandler);
   app.use(errorHandler);
 
-  const PORT = Number(process.env.PORT) || 3000;
+  const PORT = process.env.PORT || 3000;
 
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
