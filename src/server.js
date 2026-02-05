@@ -6,6 +6,7 @@ import { connectMongoDB } from './db/connectMongoDB.js';
 import notesRoutes from './routes/notesRoutes.js';
 
 import { logger } from './middleware/logger.js';
+import { errors } from 'celebrate';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
@@ -23,6 +24,7 @@ const startServer = async () => {
   app.use(notesRoutes);
 
   app.use(notFoundHandler);
+  app.use(errors());
   app.use(errorHandler);
 
   const PORT = process.env.PORT || 3000;
