@@ -8,7 +8,7 @@ import handlebars from 'handlebars';
 import { User } from '../models/user.js';
 import { Session } from '../models/session.js';
 import { createSession, setSessionCookies } from '../services/auth.js';
-import { sendMail } from '../utils/sendMail.js';
+import { sendEmail } from '../utils/sendMail.js';
 
 export const registerUser = async (req, res, next) => {
 try {
@@ -115,7 +115,8 @@ const link = `${process.env.FRONTEND_DOMAIN}/reset-password?token=${token}`;
 const html = template({ name: user.username ?? user.email, link });
 
 try {
-await sendMail({
+  await sendEmail({
+  from: process.env.SMPT_FROM,
 to: user.email,
 subject: 'Reset your password',
 html,
