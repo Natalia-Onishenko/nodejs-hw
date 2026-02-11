@@ -116,7 +116,7 @@ const html = template({ name: user.username ?? user.email, link });
 
 try {
   await sendEmail({
-  from: process.env.SMPT_FROM,
+  from: process.env.SMTP_FROM,
 to: user.email,
 subject: 'Reset your password',
 html,
